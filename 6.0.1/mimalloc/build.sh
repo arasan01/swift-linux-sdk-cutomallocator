@@ -12,10 +12,12 @@ curl -f -L --retry 5 https://github.com/microsoft/mimalloc/archive/refs/tags/v$M
 
 patch -p1 < mimalloc.diff
 
+arch=$(uname -m)
+
 cmake \
     -Bout \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_C_COMPILER=$(uname -m)-linux-musl-gcc \
+    -DCMAKE_C_COMPILER=$(arch)-linux-musl-gcc \
     -DMI_BUILD_SHARED=OFF \
     -DMI_BUILD_OBJECT=OFF \
     -DMI_BUILD_TESTS=OFF \
